@@ -31,8 +31,18 @@ function detectCollisionType(playerX, playerY, entityX, entityY) {
   // 3. Now check WHERE they hit:
   //    If playerY is significantly higher than entityY (e.g., playerY - entityY > 20), return 'top'
   // 4. Otherwise, it must be a side hit, so return 'side'
+  if (distX >= 40 || distY >= 40 ){
+    return 'none';
+  }
+ 
 
-  return 'none';
+  if (playerY - entityY > 20){
+    return 'top';
+
+  }else{
+    return "side";
+  }
+
 }
 
 /**
@@ -49,8 +59,13 @@ function calculateItemScore(itemType) {
   // 'fireflower' -> 2000
   // 'star' -> 5000
   // default -> 0
-
-  return 0;
+  switch (itemType){
+    case 'coin': return 100;
+    case 'mashroom': return 1000;
+    case 'fireflower': return 2000;
+    case 'star': return 5000;
+    default: return 0;
+  }
 }
 
 /**
